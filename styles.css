@@ -1,0 +1,145 @@
+html, body{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+}
+
+.cont{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cont h1{
+    font-size: 16px;
+    margin: 0 0 0 0;
+}
+
+.cont span{
+    font-size: 14px;
+}
+
+.clicky_cont{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+.clicky_cont .button_cont{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.clicky_cont .button_cont img{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    cursor: pointer;
+    transition: all 250ms;
+}
+
+.clicky_cont .button_cont:hover img{
+    background-color: rgb(245, 245, 245);
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px, rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.clicky_cont .button_cont img.attention {
+    animation: pop 1s ease-in-out infinite;
+}
+
+.clicky_cont .button_cont .notification{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 2px 8px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    font-size: 11px;
+    border-radius: 9999px;
+    opacity: 0;
+    transform: translateY(10px); /* Slight downward offset */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none; /* prevent interaction when hidden */
+}
+
+.clicky_cont .button_cont .notification.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.clicky_cont .widget_cont{
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 400px;
+}
+
+.clicky_cont .widget_cont.open{
+    display: flex;
+}
+
+.clicky_cont .widget_cont span{
+    font-size: 11px;
+    text-align: center;
+}
+
+/*Choose beetween one of this animations*/
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+}
+
+@keyframes pop {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.1); }
+    60%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 0px rgba(0, 123, 255, 0.0);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 0px rgba(0, 123, 255, 0.0);
+        transform: scale(1);
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+}
