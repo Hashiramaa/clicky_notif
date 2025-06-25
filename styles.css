@@ -107,6 +107,10 @@ html, body{
         bottom: 10px;
         right: 10px;
     }
+    .clicky_cont .button_cont img{
+        height: 70px;
+        width: 70px;
+    }
 }
 
 
