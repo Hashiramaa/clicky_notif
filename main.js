@@ -1,16 +1,30 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const notif = document.querySelector('.clicky_cont .notification');
-    const sound = document.getElementById('notifSound');
+    const notif  = document.createElement('span');
+    const sound  = document.getElementById('notifSound');
     const avatar = document.querySelector('.clicky_cont img');
     const widget = document.querySelector('.clicky_cont .widget_cont');
+    const buttonCont = document.querySelector('.clicky_cont .button_cont');
     //
-    let widgetOpened = false;
+    let wasWidgetOpened = false;
+    let isWidgetOpen    = false;
+    //
+    function openWidget(){
+        widget.classList.add('open'); 
+        notif.classList.remove('show');
+        avatar.classList.remove('attention');
+        wasWidgetOpened = true;
+        isWidgetOpen    = true;
+    }
+    function closeWidget(){
+        widget.classList.remove('open');
+        isWidgetOpen   = false;
+    }
     //
     setTimeout(() => {
-        if(!widgetOpened){
-            if (notif) {
-                notif.classList.add('show');
-            }
+        if(!wasWidgetOpened){
+            notif.className = 'notification show';
+            notif.textContent = 'Need help? Click me!';
+            buttonCont.insertBefore(notif, avatar);
             if (sound) {
                 sound.play().catch(e => {
                     // Peut arriver si l'utilisateur n'a pas encore interagi avec la page
@@ -26,17 +40,22 @@ window.addEventListener('DOMContentLoaded', () => {
         avatar.classList.remove('attention');
     }, 8000); // 3s in + 5s visible
     //
-    avatar.addEventListener('click', () => {
-        if (widget) {
-            widget.classList.add('open'); 
-            notif.classList.remove('show');
-            avatar.classList.remove('attention');
-            widgetOpened = true;
-        }
-    })
+    [avatar, notif].forEach(e => {
+        e.addEventListener('click', () => {
+            if (widget) {
+                if(isWidgetOpen){
+                    closeWidget();
+                }else{
+                    openWidget();
+                }
+            }
+        }) 
+    });
+    /*
     widget.addEventListener('click', () => {
         if (widget) {
-            widget.classList.remove('open');
+            closeWidget();
         }
     })
+    */
 });

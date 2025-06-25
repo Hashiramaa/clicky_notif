@@ -34,9 +34,11 @@ html, body{
 }
 
 .clicky_cont .button_cont{
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
+    z-index: 10;
 }
 
 .clicky_cont .button_cont img{
@@ -68,14 +70,16 @@ html, body{
     opacity: 0;
     transform: translateY(10px); /* Slight downward offset */
     transition: opacity 0.4s ease, transform 0.4s ease;
-    pointer-events: none; /* prevent interaction when hidden */
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+    background: linear-gradient(to bottom, #ea5600 0%, #d13b00 100%);
+    animation: showNotification 400ms ease;
 }
 
 .clicky_cont .button_cont .notification.show {
     opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    cursor: pointer;
+    transform: translateY(-10px);
 }
 
 .clicky_cont .widget_cont{
@@ -97,6 +101,45 @@ html, body{
     font-size: 11px;
     text-align: center;
 }
+
+.clicky_cont .button_cont .notification .decoration {
+    position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    transform: rotate(45deg);
+    bottom: -6px;
+    right: 20px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent #FFF #FFF transparent;
+}
+
+.clicky_cont .button_cont .notification:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: -4px;
+    height: 14px;
+    width: 14px;
+    background: linear-gradient(to bottom, #ea5600 0%, #d13b00 100%);
+    background-attachment: fixed;
+    border-bottom-left-radius: 15px;
+    z-index: -1;
+}
+
+.clicky_cont .button_cont .notification:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: -10px;
+    width: 10px;
+    height: 14px;
+    background: white;
+    border-bottom-left-radius: 10px;
+    z-index: -1;
+}
+
 
 @media (max-width: 768px) {
     .clicky_cont{
@@ -159,4 +202,9 @@ html, body{
     0%, 100% { transform: rotate(0deg); }
     25% { transform: rotate(2deg); }
     75% { transform: rotate(-2deg); }
+}
+
+@keyframes showNotification {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(-10px); }
 }
