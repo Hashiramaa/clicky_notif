@@ -35,6 +35,7 @@ html, body{
 .clicky_cont{
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 10px;
     position: absolute;
     bottom: 40px;
@@ -129,7 +130,7 @@ html, body{
     background-color: #fff;
     overflow: hidden;
     max-height: 90%;
-    max-width: 90%;
+    max-width: 80%;
 }
 
 .clicky_cont .widget_cont.open{
