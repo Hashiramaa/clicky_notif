@@ -128,6 +128,8 @@ html, body{
     width: 400px;
     background-color: #fff;
     overflow: hidden;
+    max-height: 90%;
+    max-width: 90%;
 }
 
 .clicky_cont .widget_cont.open{
@@ -246,7 +248,7 @@ html, body{
         flex-direction: column;
         gap: 10px;
         position: absolute;
-        bottom: 10px;
+        bottom: 20px;
         right: 10px;
     }
     .clicky_cont .button_cont img{
