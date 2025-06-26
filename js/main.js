@@ -1,9 +1,21 @@
+const images   = ['images/img.png', 'images/img2.png', 'images/img3.png'];
+let imageIndex = 0;
+//
+const timeBeforeAnimate = 3000; // in ms
+const AnimateVisible    = 10000; // in ms
+//
 window.addEventListener('DOMContentLoaded', () => {
     const notif  = document.createElement('span');
     const sound  = document.getElementById('notifSound');
-    const avatar = document.querySelector('.clicky_cont img');
+    const avatar = document.querySelector('.clicky_cont .button_cont img');
     const widget = document.querySelector('.clicky_cont .widget_cont');
     const buttonCont = document.querySelector('.clicky_cont .button_cont');
+    const closeBtn   = document.querySelector('.close');
+    //
+    const changeImgBtn = document.querySelector('.change_img');
+    const buttonImg    = document.querySelector('.clicky_cont .button_cont img');
+    const widgetImg    = document.querySelector('.widget_cont img.logo');
+    const favicon      = document.querySelector("link[rel~='icon']");
     //
     let wasWidgetOpened = false;
     let isWidgetOpen    = false;
@@ -33,15 +45,15 @@ window.addEventListener('DOMContentLoaded', () => {
             }
             if (avatar) avatar.classList.add('attention');   
         }
-    }, 3000); // 3000ms = 3 seconds
+    }, timeBeforeAnimate); // 3000ms = 3 seconds
     //
     setTimeout(() => {
         notif.classList.remove('show');
         avatar.classList.remove('attention');
-    }, 8000); // 3s in + 5s visible
+    }, timeBeforeAnimate+AnimateVisible); // 3s in + 5s visible
         setTimeout(() => {
         notif.style.display = 'none';
-    }, 8400);
+    }, timeBeforeAnimate+AnimateVisible+400);
     //
     [avatar, notif].forEach(e => {
         e.addEventListener('click', () => {
@@ -54,11 +66,18 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }) 
     });
-    /*
-    widget.addEventListener('click', () => {
+    closeBtn.addEventListener('click', () => {
         if (widget) {
             closeWidget();
         }
     })
-    */
+    //
+    changeImgBtn.addEventListener('click', () => {
+        if(imageIndex+1 === images.length){imageIndex = 0}
+        else {imageIndex = imageIndex+1;}
+        //
+        buttonImg.src = images[imageIndex];
+        widgetImg.src = images[imageIndex];
+        favicon.href  = images[imageIndex];
+    })
 });
