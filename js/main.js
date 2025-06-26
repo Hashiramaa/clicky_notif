@@ -1,4 +1,4 @@
-const images   = ['images/img.png', 'images/img2.png', 'images/img3.png'];
+const images   = ['images/img5.png', 'images/img.png' ,'images/img2.png', 'images/img3.png'];
 let imageIndex = 0;
 //
 const timeBeforeAnimate = 3000; // in ms
