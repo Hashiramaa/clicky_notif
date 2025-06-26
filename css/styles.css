@@ -129,7 +129,7 @@ html, body{
     width: 400px;
     background-color: #fff;
     overflow: hidden;
-    max-height: 90%;
+    max-height: 80vh;
     max-width: 80%;
 }
 
