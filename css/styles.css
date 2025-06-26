@@ -130,7 +130,7 @@ html, body{
     background-color: #fff;
     overflow: hidden;
     max-height: 80vh;
-    max-width: 80%;
+    max-width: 80vw;
 }
 
 .clicky_cont .widget_cont.open{
