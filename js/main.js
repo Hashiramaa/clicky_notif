@@ -4,13 +4,28 @@ let imageIndex = 0;
 const timeBeforeAnimate = 3000; // in ms
 const AnimateVisible    = 10000; // in ms
 //
+let messages = [
+    {
+        from: 'bot',
+        content: `
+            Bonjour 👋,<br>
+            je suis Clicky, votre assistant virtuelle !<br>
+            Propulsée par l'IA générative, je vous aide à trouver des produits, à répondre à vos questions et à vous guider vers les bonnes pages.<br>
+            Je suis encore en apprentissage, alors merci pour votre patience pendant que je continue de m'améliorer 😊.
+        `
+    }
+]
+//
 window.addEventListener('DOMContentLoaded', () => {
-    const notif  = document.createElement('span');
-    const sound  = document.getElementById('notifSound');
-    const avatar = document.querySelector('.clicky_cont .button_cont img');
-    const widget = document.querySelector('.clicky_cont .widget_cont');
-    const buttonCont = document.querySelector('.clicky_cont .button_cont');
-    const closeBtn   = document.querySelector('.close');
+    const notif        = document.createElement('span');
+    const sound        = document.getElementById('notifSound');
+    const avatar       = document.querySelector('.clicky_cont .button_cont img');
+    const widget       = document.querySelector('.clicky_cont .widget_cont');
+    const buttonCont   = document.querySelector('.clicky_cont .button_cont');
+    const closeBtn     = document.querySelector('.close');
+    const messagesCont = document.querySelector('.widget_cont .main');
+    const messageForm  = document.querySelector('.widget_cont form');
+    const messageInput  = document.querySelector('.widget_cont form input');
     //
     const changeImgBtn = document.querySelector('.change_img');
     const buttonImg    = document.querySelector('.clicky_cont .button_cont img');
@@ -31,6 +46,50 @@ window.addEventListener('DOMContentLoaded', () => {
         widget.classList.remove('open');
         isWidgetOpen   = false;
     }
+    function setMessages(){
+        messages.forEach(m => {
+            const msgSpan = document.createElement('span');
+            msgSpan.className = `msg ${m.from}`; // tu peux utiliser 'bot' ou 'user' pour appliquer du style
+            msgSpan.innerHTML = m.content;
+            messagesCont.appendChild(msgSpan);
+        });
+    }
+    function onSend(e) {
+        //
+        const input = messageInput;
+        const userMsg = input.value.trim();
+        //
+        messages.push({
+            from: 'user',
+            content: userMsg
+        });
+        //
+        const msgSpan = document.createElement('span');
+        msgSpan.className = 'msg user';
+        msgSpan.textContent = userMsg;
+        messagesCont.appendChild(msgSpan);
+        //
+        input.value = '';
+        messagesCont.scrollTop = messagesCont.scrollHeight;
+        //
+        // Bot reponse
+        setTimeout(() => {
+            const botReply = {
+                from: 'bot',
+                content: "Merci pour votre message ! 😊 (Réponse automatique)"
+            };
+            messages.push(botReply);
+
+            const replySpan = document.createElement('span');
+            replySpan.className = 'msg bot';
+            replySpan.innerHTML = botReply.content;
+            messagesCont.appendChild(replySpan);
+            messagesCont.scrollTop = messagesCont.scrollHeight;
+            sound.play();
+        }, 1000);
+    }
+    //
+    setMessages();
     //
     setTimeout(() => {
         if(!wasWidgetOpened){
@@ -79,5 +138,9 @@ window.addEventListener('DOMContentLoaded', () => {
         buttonImg.src = images[imageIndex];
         widgetImg.src = images[imageIndex];
         favicon.href  = images[imageIndex];
+    })
+    messageForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        onSend(e.msg);
     })
 });

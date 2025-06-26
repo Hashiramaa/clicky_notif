@@ -4,6 +4,8 @@ html, body{
     width: 100%;
     display: flex;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .cont{
@@ -203,6 +205,13 @@ html, body{
     border-radius: 4px;
     text-align: left;
     font-size: 15px;
+    width: fit-content;
+}
+
+.clicky_cont .widget_cont .main .msg.user{
+    background: linear-gradient(to bottom, #d13b00 0%, #d13b00 100%);
+    color: #fff;
+    margin-left: auto;
 }
 
 .clicky_cont .widget_cont .bottom{
