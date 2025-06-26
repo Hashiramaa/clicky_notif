@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             const botReply = {
                 from: 'bot',
-                content: "Merci pour votre message ! 😊 (Réponse automatique)"
+                content: "Merci pour votre aimable message ! 😊 (Réponse automatique)"
             };
             messages.push(botReply);
 
